@@ -1,0 +1,21 @@
+.diabled-btn {
+  display: none;
+}
+.side-menu a:hover {
+  text-decoration: underline;
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+
+.blink {
+  animation: blink 1s infinite;
+}
