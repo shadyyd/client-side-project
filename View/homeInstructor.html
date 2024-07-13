@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Create Test</title>
+    <link
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+
+    <link rel="stylesheet" href="/SASS/main.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="d-flex justify-content-end">
+        <button id="logoutButton" class="btn log-out">Log Out</button>
+      </div>
+      <div class="row">
+        <div class="col-md-8">
+          <h2 class="title title-test">Create a New Test</h2>
+          <form id="createTestForm">
+            <div class="form-group">
+              <label for="testName">Test Name</label>
+              <input
+                type="text"
+                class="form-control"
+                id="testName"
+                placeholder="Enter the test name"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="testtype"> Type</label>
+              <select class="form-control" id="testtype" required>
+                <option value="">Select Type Level</option>
+                <option value="mathematics">Mathematics</option>
+                <option value="programming">Programming</option>
+                <option value="language">Language</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="timer">Time (min)</label>
+              <input
+                type="number"
+                class="form-control"
+                id="timer"
+                placeholder="Enter Time"
+                required
+              />
+            </div>
+            <div class="form-group">
+              <label for="testDifficulty">Difficulty Level</label>
+              <select class="form-control" id="testDifficulty" required>
+                <option value="">Select Difficulty Level</option>
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label>Questions</label>
+              <div id="questionsList">
+                <!-- Questions will be added here -->
+              </div>
+              <div class="d-flex justify-content-around">
+                <button
+                  type="button"
+                  class="btn btn-custom width-40"
+                  id="addQuestionButton"
+                >
+                  Add Question
+                </button>
+                <button
+                  type="submit"
+                  class="btn btn-custom2 width-40"
+                  id="createTest"
+                >
+                  Create Test
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+        <div class="col-md-4">
+          <div class="test-container card-body test-card">
+            <h2 class="card-title">All Tests</h2>
+            <div id="testsList">
+              <!-- Tests will be displayed here -->
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <script type="module" src="../Controller/homeInstructor.js"></script>
+  </body>
+</html>
