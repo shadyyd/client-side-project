@@ -1,0 +1,46 @@
+.title {
+  width: 62%;
+  background-color: #116466;
+  display: flex;
+  justify-content: center;
+  color: white;
+  border-radius: 14px 2px;
+  padding: 2px;
+}
+
+label {
+  color: $dark-green;
+  font-weight: 700;
+}
+
+.title-test {
+  width: 100%;
+  margin-top: 15px;
+}
+
+.test-card {
+  ul {
+    padding: 20px;
+    li {
+      list-style-type: none;
+      background: white;
+      width: 100%;
+      border-radius: 5px;
+      cursor: pointer;
+      margin-bottom: 10px;
+      a {
+        text-decoration: none;
+        color: $dark-green;
+        font-weight: 700;
+      }
+      &:hover {
+        outline: solid 2px white;
+        background-color: $dark-green;
+        a {
+          color: white;
+        }
+        transition: 0.2s;
+      }
+    }
+  }
+}
