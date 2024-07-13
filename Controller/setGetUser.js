@@ -44,7 +44,7 @@ if (userList.length === 0) {
 }
 
 export function setUser(fN, lN, e, p) {
-  let newUser = new User(fN, lN, e, p);
+  let newUser = new Student(fN, lN, e, p);
   userList.push(newUser);
   localStorage.setItem("userList", JSON.stringify(userList));
 }
