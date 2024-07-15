@@ -2,6 +2,7 @@ export default function initTest() {
   const cashedAnswerList = JSON.parse(localStorage.getItem("answerList"));
   // console.log(cashedAnswerList);
   let questionList = JSON.parse(localStorage.getItem("QuestionList"));
+  let submitBtn=document.getElementById("submitBtn");
 
   let isShuffled = localStorage.getItem("shuffled") || false;
   shuffleArray(questionList);
@@ -12,8 +13,23 @@ export default function initTest() {
     ? cashedAnswerList
     : Array.from({ length: questionList.length }, () => null);
   console.log(answerList);
-
+  submitCheck()
   // Array.from({ length: questionList.length }, () => null);
+  function submitCheck() {
+    // Check if any element is null or if arrAnswer is null or an empty array
+    let hasInvalidAnswer = answerList.some(answer => answer === null || answer.arrAnswer === null || answer.arrAnswer.length === 0);
+
+    if (hasInvalidAnswer) {
+      submitBtn.disabled = true;
+      submitBtn.style.backgroundColor="gray"
+        console.log("disable");
+    } else {
+      submitBtn.disabled = false;
+      submitBtn.style.backgroundColor = "";
+
+        console.log("enable");
+    }
+}
   function shuffleArray(array) {
     if (!isShuffled) {
       for (var i = array.length - 1; i > 0; i--) {
@@ -167,6 +183,8 @@ export default function initTest() {
       }
     }
     // updateUserAnswerList(answerList);
+    console.log(answerList)
+    submitCheck();
     localStorage.setItem("answerList", JSON.stringify(answerList));
   }
 
@@ -179,7 +197,7 @@ export default function initTest() {
     .getElementById("answers-form")
     .addEventListener("change", updateSelectedAnswers);
 
-  document.getElementById("submitBtn").addEventListener("click", () => {
+  submitBtn.addEventListener("click", () => {
     localStorage.setItem("scorePage", "submit");
     location.replace("../View/score.html");
   });

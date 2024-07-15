@@ -36,6 +36,7 @@
   color: white;
   font-size: 18px;
   font-weight: 600;
+  margin-bottom: 10px;
 }
 .log-out:hover {
   background-color: white;
@@ -45,20 +46,24 @@
 }
 
 .btn-custom {
-  background-color: #116466;
+  background-color: white;
+  color: #116466;
+  outline: 2px solid #116466;
+}
+.btn-custom:hover {
   color: white;
-  font-weight: 600;
+  background-color: #116466;
 }
 
 .btn-custom2 {
-  background-color: #0a4d7a;
+  background-color: #116466;
   color: white;
   font-weight: 600;
 }
 .btn-custom2:hover {
   background-color: white;
-  color: #0a4d7a;
-  outline: 2px solid #0a4d7a;
+  color: #116466;
+  outline: 2px solid #116466;
 }
 
 .btn-start {
@@ -82,13 +87,8 @@
 }
 
 .title {
-  width: 62%;
-  background-color: #116466;
-  display: flex;
-  justify-content: center;
-  color: white;
-  border-radius: 14px 2px;
-  padding: 2px;
+  font-weight: bolder;
+  margin-bottom: 30px;
 }
 
 label {
@@ -127,17 +127,11 @@ label {
 }
 
 .test-card {
-  background-color: #116466;
+  background-color: white;
+  border-radius: 16px;
 }
 .test-card .card-title {
-  background: white;
-  color: #116466;
   font-weight: 700;
-  text-align: center;
-  border-radius: 14px 2px;
-}
-.test-card .button-test {
-  width: 47%;
 }
 
 .pag-btn {
@@ -177,33 +171,42 @@ label {
   margin-top: 20px;
 }
 
-.question-container {
+.create-test-card {
+  background-color: white;
+  padding: 20px;
+  border-radius: 16px;
+  height: 50%;
   margin-bottom: 20px;
-}
-
-.test-container {
-  margin-top: 40px;
 }
 
 .test-item {
-  border: 1px solid #ddd;
   padding: 15px;
   margin-bottom: 20px;
-  border-radius: 5px;
-  background-color: #f9f9f9;
-  border-radius: 9px 23px;
+  background-color: #f7f7f7;
+  border-radius: 8px;
 }
 
 .test-item h4 {
-  margin-bottom: 10px;
+  margin-bottom: 15px;
+  text-transform: capitalize;
+}
+
+.test-item p {
+  color: #116466;
 }
 
 .test-actions {
   margin-top: 15px;
+  display: flex;
+}
+
+.test-actions button {
+  width: 50%;
+  margin-left: 10px;
 }
 
 body {
-  background-color: #e0f7fa;
+  background-color: #eeeeee;
   display: flex;
   justify-content: center;
   align-items: center;

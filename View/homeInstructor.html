@@ -17,7 +17,7 @@
         <button id="logoutButton" class="btn log-out">Log Out</button>
       </div>
       <div class="row">
-        <div class="col-md-8">
+        <div class="col-md-8 create-test-card">
           <h2 class="title title-test">Create a New Test</h2>
           <form id="createTestForm">
             <div class="form-group">
@@ -34,9 +34,9 @@
               <label for="testtype"> Type</label>
               <select class="form-control" id="testtype" required>
                 <option value="">Select Type Level</option>
-                <option value="mathematics">Mathematics</option>
-                <option value="programming">Programming</option>
-                <option value="language">Language</option>
+                <option value="Mathematics">Mathematics</option>
+                <option value="Programming">Programming</option>
+                <option value="Language">Language</option>
               </select>
             </div>
             <div class="form-group">
@@ -53,15 +53,14 @@
               <label for="testDifficulty">Difficulty Level</label>
               <select class="form-control" id="testDifficulty" required>
                 <option value="">Select Difficulty Level</option>
-                <option value="easy">Easy</option>
-                <option value="medium">Medium</option>
-                <option value="hard">Hard</option>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
               </select>
             </div>
 
             <div class="form-group">
-              <label>Questions</label>
-              <div id="questionsList">
+              <div id="questionsList" >
                 <!-- Questions will be added here -->
               </div>
               <div class="d-flex justify-content-around">
@@ -77,7 +76,7 @@
                   class="btn btn-custom2 width-40"
                   id="createTest"
                 >
-                  Create Test
+                  Save Test
                 </button>
               </div>
             </div>

@@ -78,7 +78,11 @@ document.addEventListener("DOMContentLoaded", function () {
       questionDiv.setAttribute("id", `questionContainer${index}`);
 
       questionDiv.innerHTML = `
+            <div style="background-color: #f7f7f7; padding: 20px; border-radius: 8px; margin-bottom: 15px;">
+            <div class="d-flex justify-content-between align-items-center">
             <h5>Question ${index}</h5>
+            <a class="delete-question" data-index="${index}" style="color: red; cursor: pointer; text-decoration: none;">Delete</a>
+            </div>
             <div class="form-group">
                 <label for="questionText${index}">Question Text</label>
                 <input type="text" class="form-control" id="questionText${index}" placeholder="Enter the question text" required>
@@ -92,18 +96,18 @@ document.addEventListener("DOMContentLoaded", function () {
                 </select>
             </div>
             <div id="optionsContainer${index}" class="form-group">
-                <label>Options</label>
+                <label id="opthion" style="display: none;">Options</label>
                 <div id="optionsList${index}">
                     <!-- Options will be added here -->
                 </div>
             </div>
             <div class="form-group">
-                <label>Correct Answers</label>
+                <label id="correntAnswer" style="display: none;">Correct Answers</label>
                 <div id="correctAnswersList${index}">
                     <!-- Correct answers will be listed here -->
                 </div>
             </div>
-            <button type="button" class="btn btn-danger delete-question" data-index="${index}">Delete Question</button>
+            </div>
         `;
       questionsList.appendChild(questionDiv);
 
@@ -116,6 +120,9 @@ document.addEventListener("DOMContentLoaded", function () {
       );
 
       questionTypeSelect.addEventListener("change", function () {
+        document.getElementById("opthion").style.display = "block";
+        document.getElementById("correntAnswer").style.display = "block";
+
         const type = questionTypeSelect.value;
         optionsList.innerHTML = "";
         correctAnswersList.innerHTML = "";
@@ -125,9 +132,8 @@ document.addEventListener("DOMContentLoaded", function () {
             const optionDiv = document.createElement("div");
             optionDiv.classList.add("form-group");
             optionDiv.innerHTML = `
-                        <input type="text" class="form-control mb-2" placeholder="Option ${
-                          i + 1
-                        }" required>
+                        <input type="text" class="form-control mb-2" placeholder="Option ${i + 1
+              }" required>
                     `;
             optionsList.appendChild(optionDiv);
 
@@ -136,9 +142,8 @@ document.addEventListener("DOMContentLoaded", function () {
             answerDiv.innerHTML = `
                         <div class="form-check">
                             <input class="form-check-input" type="checkbox" value="${i}" id="answer${index}_${i}">
-                            <label class="form-check-label" for="answer${index}_${i}">Option ${
-              i + 1
-            }</label>
+                            <label class="form-check-label" for="answer${index}_${i}">Option ${i + 1
+              }</label>
                         </div>
                     `;
             correctAnswersList.appendChild(answerDiv);
@@ -310,20 +315,20 @@ document.addEventListener("DOMContentLoaded", function () {
         const testDiv = document.createElement("div");
         testDiv.classList.add("test-item");
         testDiv.innerHTML = `
-                <h4 > <center>${test.name} </center></h4>
-                <img src=${test.img} width=100% height=200px>
-                <p>Author: ${test.author}</p>
-                <p>Type: ${test.type}</p>
-                <p>Time: ${test.timer} min</p>
-                <p>Difficulty: ${test.difficulty}</p>
-                <div class="test-actions">
-                    <button class="btn btn-secondary edit-test" data-index="${index}">Edit</button>
-                    <button class="btn btn-danger delete-test" data-index="${index}">Delete</button>
-                </div>
-            `;
+            <h4>${test.name}</h4>
+            <p>${test.type}</p>
+            <div class="d-flex justify-content-between align-items-center">
+              <p>${test.difficulty}</p>
+              <p>${test.timer} min</p>
+            </div>
+            <div class="test-actions">
+                <button class="btn btn-secondary edit-test" data-index="${index}">Edit</button>
+                <button class="btn btn-danger delete-test" data-index="${index}">Delete</button>
+            </div>
+        `;
         testsList.appendChild(testDiv);
       });
-
+    
       document.querySelectorAll(".edit-test").forEach((button) => {
         button.addEventListener("click", function () {
           editIndex = button.getAttribute("data-index");
@@ -343,21 +348,33 @@ document.addEventListener("DOMContentLoaded", function () {
           editMode = true;
         });
       });
-
+    
       document.querySelectorAll(".delete-test").forEach((button) => {
-        button.addEventListener("click", function () {
-          const index = button.getAttribute("data-index");
-          user.testList.splice(index, 1);
-
-          let i = tests.findIndex((el) => el.id === user.id);
-          tests.splice(i, 1);
-          localStorage.setItem("tests", JSON.stringify(tests));
-          localStorage.setItem("logInUser", JSON.stringify(user));
-
-          loadTests();
+        button.addEventListener("click", function (e) {
+          const index = e.target.getAttribute("data-index");
+          console.log(`Deleting test at index ${index}`);  // Added logging for debugging
+    
+          // Check if the test still exists in user.testList
+          if (user.testList[index]) {
+            // Find the global index of the test and remove it from the global tests list
+            const globalIndex = getTests().findIndex((t) => t.id === user.testList[index].id);
+            if (globalIndex > -1) {
+              let tests = getTests();
+              tests.splice(globalIndex, 1);
+              localStorage.setItem("tests", JSON.stringify(tests));
+            }
+    
+            // Remove the test from the user's test list
+            user.testList.splice(index, 1);
+            localStorage.setItem("logInUser", JSON.stringify(user));
+            loadTests();
+          } else {
+            console.error(`Test at index ${index} does not exist in user.testList`);
+          }
         });
       });
     }
+    
     const logoutButton = document.getElementById("logoutButton");
 
     logoutButton.addEventListener("click", function () {

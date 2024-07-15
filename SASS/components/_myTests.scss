@@ -1,16 +1,10 @@
 .test-card {
-    background-color: $dark-green;
+    background-color: white;
+    border-radius: 16px;
 
     .card-title {
-        background: white;
-        color: $dark-green;
         font-weight: 700;
-        text-align: center;
-        border-radius: 14px 2px;
     }
 
-    .button-test{
-        width: 47%;
-    }
-
+   
 }
