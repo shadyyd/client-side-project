@@ -3,9 +3,13 @@
   max-width: 500px;
   margin: 50px auto;
   padding: 40px;
-  box-shadow: 12px -3px 13px 8px $dark-green;
-  border: 3px solid $dark-green;
-  border-radius: 14px 2px;
+  // box-shadow: 12px -3px 13px 8px $dark-green;
+  border: 1px solid rgb(143, 139, 139);
+  border-radius: 14px;
+  label {
+    color: black;
+    font-weight: 400;
+  }
 }
 
 // label {

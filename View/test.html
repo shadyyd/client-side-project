@@ -10,6 +10,13 @@
       integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
       crossorigin="anonymous"
     />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <link rel="stylesheet" href="/SASS/main.css" />
   </head>
   <body>
@@ -31,7 +38,15 @@
             <!-- ------------------- -->
             <div class="card-body">
               <!--  -->
-              <h2 id="question-title">Question 1:</h2>
+              <div class="d-flex justify-content-between">
+                <h2 id="question-title">Question 1:</h2>
+                <div>
+                  <input type="checkbox" class="btn-check" id="mark" />
+                  <label class="btn btn-outline-warning" for="mark"
+                    ><i class="fa-regular fa-flag"></i
+                  ></label>
+                </div>
+              </div>
               <p id="question-text">This is the question text...</p>
               <!--  -->
               <form class="mb-4" id="answers-form">
@@ -46,27 +61,12 @@
                 </div>
               </form>
               <div class="d-flex justify-content-between">
-                <nav aria-label="Question navigation">
-                  <ul class="pagination">
-                    <li class="page-item" id="prev-page">
-                      <a class="page-link pag-btn">Previous</a>
-                    </li>
-                    <li class="page-item active">
-                      <a
-                        class="page-link active-pag-ptn"
-                        id="currentPage"
-                        href="#"
-                        >1</a
-                      >
-                    </li>
-                    <li class="page-item" id="next-page">
-                      <a class="page-link pag-btn" href="#">Next</a>
-                    </li>
-                  </ul>
-                </nav>
-                <div>
-                  <input type="checkbox" class="btn-check" id="mark" />
-                  <label class="btn btn-outline-warning" for="mark">Mark</label>
+                <div class="" id="prev-page">
+                  <a class="btn btn-custom">Previous</a>
+                </div>
+
+                <div class="" id="next-page">
+                  <a class="btn btn-custom" href="#">Next</a>
                 </div>
               </div>
             </div>

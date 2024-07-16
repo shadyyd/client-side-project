@@ -27,10 +27,13 @@ function loadTests() {
       <p class="card-text"><strong>Duration:</strong> ${test.timer} minutes</p>
       <p class="card-text"><strong>Questions:</strong> ${test.numOfQuestions}</p>
       <p class="card-text"><strong>Difficulty:</strong> ${test.difficulty}</p>`;
+    const div = document.createElement("div");
+    div.className = "d-flex justify-content-end";
     const a = document.createElement("a");
-    a.className = "btn btn-custom btn-custom-hover";
+    a.className = "btn btn-custom";
     a.href = "#";
     a.textContent = "Start Test";
+    div.appendChild(a);
     a.addEventListener("click", function (e) {
       e.preventDefault();
       localStorage.setItem("QuestionList", JSON.stringify(test.questions));
@@ -40,7 +43,7 @@ function loadTests() {
       localStorage.setItem("startTime", startTime);
       window.location.href = "test.html";
     });
-    card.appendChild(a);
+    card.appendChild(div);
     innerDiv.appendChild(img);
     innerDiv.appendChild(card);
     testDiv.appendChild(innerDiv);
