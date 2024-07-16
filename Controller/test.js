@@ -2,7 +2,7 @@ export default function initTest() {
   const cashedAnswerList = JSON.parse(localStorage.getItem("answerList"));
   // console.log(cashedAnswerList);
   let questionList = JSON.parse(localStorage.getItem("QuestionList"));
-  let submitBtn=document.getElementById("submitBtn");
+  let submitBtn = document.getElementById("submitBtn");
 
   let isShuffled = localStorage.getItem("shuffled") || false;
   shuffleArray(questionList);
@@ -13,23 +13,28 @@ export default function initTest() {
     ? cashedAnswerList
     : Array.from({ length: questionList.length }, () => null);
   console.log(answerList);
-  submitCheck()
+  submitCheck();
   // Array.from({ length: questionList.length }, () => null);
   function submitCheck() {
     // Check if any element is null or if arrAnswer is null or an empty array
-    let hasInvalidAnswer = answerList.some(answer => answer === null || answer.arrAnswer === null || answer.arrAnswer.length === 0);
+    let hasInvalidAnswer = answerList.some(
+      (answer) =>
+        answer === null ||
+        answer.arrAnswer === null ||
+        answer.arrAnswer.length === 0
+    );
 
     if (hasInvalidAnswer) {
       submitBtn.disabled = true;
-      submitBtn.style.backgroundColor="gray"
-        console.log("disable");
+      submitBtn.style.backgroundColor = "gray";
+      console.log("disable");
     } else {
       submitBtn.disabled = false;
       submitBtn.style.backgroundColor = "";
 
-        console.log("enable");
+      console.log("enable");
     }
-}
+  }
   function shuffleArray(array) {
     if (!isShuffled) {
       for (var i = array.length - 1; i > 0; i--) {
@@ -104,13 +109,11 @@ export default function initTest() {
   function updatePagination() {
     document
       .getElementById("prev-page")
-      .classList.toggle("diabled-btn", curQuest === 0);
-
-    document.getElementById("currentPage").textContent = curQuest + 1;
+      .children[0].classList.toggle("hidden-btn", curQuest === 0);
 
     document
       .getElementById("next-page")
-      .classList.toggle("diabled-btn", curQuest === questionList.length - 1);
+      .classList.toggle("hidden-btn", curQuest === questionList.length - 1);
   }
 
   function prevPage(e) {
@@ -183,7 +186,7 @@ export default function initTest() {
       }
     }
     // updateUserAnswerList(answerList);
-    console.log(answerList)
+    console.log(answerList);
     submitCheck();
     localStorage.setItem("answerList", JSON.stringify(answerList));
   }

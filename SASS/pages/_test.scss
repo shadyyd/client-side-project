@@ -1,6 +1,14 @@
 .diabled-btn {
   display: none;
 }
+.pg {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+  .pg > li {
+    display: block;
+  }
+}
 .side-menu a:hover {
   text-decoration: underline;
 }

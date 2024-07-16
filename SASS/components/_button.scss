@@ -40,7 +40,7 @@
   color: white;
   font-size: 18px;
   font-weight: 600;
-  margin-bottom:10px ;
+  margin-bottom: 10px;
   &:hover {
     background-color: white;
     color: red;
@@ -51,12 +51,12 @@
 
 .btn-custom {
   background-color: white;
-    color: $dark-green;
-    outline: 2px solid $dark-green;
-    &:hover {
-      color: white;
-      background-color: $dark-green;
-    }
+  color: $dark-green;
+  outline: 2px solid $dark-green;
+  &:hover {
+    color: white;
+    background-color: $dark-green;
+  }
 }
 
 .btn-custom2 {
@@ -68,7 +68,6 @@
     color: $dark-green;
     outline: 2px solid $dark-green;
   }
-  
 }
 
 .btn-start {
@@ -85,8 +84,12 @@
 .width-40 {
   width: 40%;
 }
-.btn-custom-hover:hover {
-  background-color: white;
-  color: $dark-green;
-  outline: 2px solid $dark-green;
+// .btn-custom-hover:hover {
+//   background-color: white;
+//   color: $dark-green;
+//   outline: 2px solid $dark-green;
+// }
+
+.hidden-btn {
+  visibility: hidden;
 }

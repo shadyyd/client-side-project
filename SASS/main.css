@@ -80,15 +80,14 @@
   width: 40%;
 }
 
-.btn-custom-hover:hover {
-  background-color: white;
-  color: #116466;
-  outline: 2px solid #116466;
+.hidden-btn {
+  visibility: hidden;
 }
 
 .title {
   font-weight: bolder;
   margin-bottom: 30px;
+  color: #116466;
 }
 
 label {
@@ -161,9 +160,12 @@ label {
   max-width: 500px;
   margin: 50px auto;
   padding: 40px;
-  box-shadow: 12px -3px 13px 8px #116466;
-  border: 3px solid #116466;
-  border-radius: 14px 2px;
+  border: 1px solid rgb(143, 139, 139);
+  border-radius: 14px;
+}
+.form-container label {
+  color: black;
+  font-weight: 400;
 }
 
 .container {
@@ -291,6 +293,15 @@ body {
 }
 .diabled-btn {
   display: none;
+}
+
+.pg {
+  list-style-type: none;
+  display: flex;
+  justify-content: space-between;
+}
+.pg .pg > li {
+  display: block;
 }
 
 .side-menu a:hover {
