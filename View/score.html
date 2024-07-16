@@ -22,27 +22,33 @@
       <div class="d-flex justify-content-end">
         <button id="logoutButton" class="btn log-out">Log Out</button>
       </div>
-      <div class="d-flex justify-content-center">
-        <div class="result-container">
-          <div class="result-header"></div>
-          <div class="result-details">
-            <div id="result-icon" class="result-icon"></div>
+      <div class="container-r">
+        <div class="result-container ">
+          <div class="result-header mb-3">
+            <h2>Quiz Results</h2>
+          </div>
+          <div >
+            <div id="result-icon" class="result-icon me-3 d-flex justify-content-center">
+              <!-- Icon can be added here if needed -->
+            </div>
             <div class="result-info">
               <p id="result-message"></p>
             </div>
           </div>
-          <div class="score-details">
-            <div>
-              <p>last pointer</p>
-              <p id="last-points"></p>
+          <div class="score-details mb-3">
+            <div >
+               <div class="score-circle" id="last-points">
+                <!-- Score will be displayed here -->
+              </div>
+              <p class="score">Last Score</p>
             </div>
-            <div>
-              <p>Your Points</p>
-              <p id="your-points"></p>
-            </div>
-            <div>
-              <p>Your Score</p>
-              <p id="your-score"></p>
+            
+            <div >
+              <div class="score-circle" id="your-score">
+                <!-- Score will be displayed here -->
+              </div>
+              <p class="score">Your Score</p>
+
             </div>
           </div>
           <div class="d-flex justify-content-center">
