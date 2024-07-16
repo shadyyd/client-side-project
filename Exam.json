@@ -288,15 +288,16 @@
         "type": "single"
       },
       {
-        "text": "Which tag is used for lists in HTML?",
+        "text": "What is the purpose of the `<li>` element in HTML?",
         "options": [
-          { "text": "<list>", "isCorrect": false, "questionNumber": 5 },
-          { "text": "<ul>", "isCorrect": true, "questionNumber": 5 },
-          { "text": "<ol>", "isCorrect": true, "questionNumber": 5 },
-          { "text": "<li>", "isCorrect": true, "questionNumber": 5 }
+          { "text": "To define a list item.", "isCorrect": true, "questionNumber": 5 },
+          { "text": "To create a new section in the document.", "isCorrect": false, "questionNumber": 5 },
+          { "text": "To insert an image into the page.", "isCorrect": false, "questionNumber": 5 },
+          { "text": "To link to another webpage.", "isCorrect": false, "questionNumber": 5 }
         ],
-        "type": "multiple"
+        "type": "single"
       },
+      
       {
         "text": "What does CSS stand for?",
         "options": [
@@ -378,29 +379,14 @@
       {
         "text": "What is the correct syntax for referring to an external script called 'xxx.js'?",
         "options": [
-          {
-            "text": "<script name='xxx.js'>",
-            "isCorrect": false,
-            "questionNumber": 1
-          },
-          {
-            "text": "<script src='xxx.js'>",
-            "isCorrect": true,
-            "questionNumber": 1
-          },
-          {
-            "text": "<script href='xxx.js'>",
-            "isCorrect": false,
-            "questionNumber": 1
-          },
-          {
-            "text": "<script file='xxx.js'>",
-            "isCorrect": false,
-            "questionNumber": 1
-          }
+          { "text": "script name='xxx.js'", "isCorrect": false, "questionNumber": 1 },
+          { "text": "script src='xxx.js'", "isCorrect": true, "questionNumber": 1 },
+          { "text": "script href='xxx.js'", "isCorrect": false, "questionNumber": 1 },
+          { "text": "script file='xxx.js'", "isCorrect": false, "questionNumber": 1 }
         ],
         "type": "single"
       },
+      
       {
         "text": "How do you create a function in JavaScript?",
         "options": [
@@ -460,31 +446,31 @@
         "type": "single"
       },
       {
-        "text": "How can you add a comment in a JavaScript?",
+        "text": "Which of the following is the correct way to create a single-line comment in JavaScript?",
         "options": [
           {
-            "text": "<!--This is a comment-->",
-            "isCorrect": false,
-            "questionNumber": 5
-          },
-          {
-            "text": "//This is a comment",
+            "text": "// This is a single-line comment",
             "isCorrect": true,
             "questionNumber": 5
           },
           {
-            "text": "**This is a comment**",
+            "text": "# This is a single-line comment",
             "isCorrect": false,
             "questionNumber": 5
           },
           {
-            "text": "'This is a comment'",
+            "text": "-- This is a single-line comment",
+            "isCorrect": false,
+            "questionNumber": 5
+          },
+          {
+            "text": "' This is a single-line comment",
             "isCorrect": false,
             "questionNumber": 5
           }
         ],
         "type": "single"
-      },
+      },      
       {
         "text": "How do you declare a JavaScript variable?",
         "options": [
