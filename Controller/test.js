@@ -1,17 +1,20 @@
 export default function initTest() {
-  const cashedAnswerList = JSON.parse(localStorage.getItem("answerList"));
+  const cashedAnswerList = JSON.parse(sessionStorage.getItem("answerList"));
   // console.log(cashedAnswerList);
-  let questionList = JSON.parse(localStorage.getItem("QuestionList"));
+  let questionList = JSON.parse(sessionStorage.getItem("QuestionList"));
   let submitBtn = document.getElementById("submitBtn");
-
-  let isShuffled = localStorage.getItem("shuffled") || false;
+  
+  let isShuffled = sessionStorage.getItem("shuffled") || false;
   shuffleArray(questionList);
-
+  
   let curQuest = 0;
   const markedQuestions = [];
   const answerList = cashedAnswerList
-    ? cashedAnswerList
-    : Array.from({ length: questionList.length }, () => null);
+  ? cashedAnswerList
+  : Array.from({ length: questionList.length }, () => null);
+  if(!cashedAnswerList){
+    sessionStorage.setItem('answerList', JSON.stringify(answerList));
+  }
   console.log(answerList);
   submitCheck();
   // Array.from({ length: questionList.length }, () => null);
@@ -44,14 +47,20 @@ export default function initTest() {
         array[j] = temp;
       }
     }
-    localStorage.setItem("shuffled", true);
+    sessionStorage.setItem("shuffled", true);
   }
   function renderQuestion() {
     const question = questionList[curQuest];
     document.getElementById("question-title").innerText = `Question ${
       curQuest + 1
     }:`;
-    document.getElementById("question-text").innerText = question.text;
+    if(question.type === "multiple"){
+
+      document.getElementById("question-text").innerHTML = `${question.text} <span class="text-danger">(Remember this is a multiple choice question.)</span>`;
+    }else{
+      document.getElementById("question-text").innerText = question.text;
+
+    }
 
     const answersForm = document.getElementById("answers-form");
 
@@ -188,7 +197,7 @@ export default function initTest() {
     // updateUserAnswerList(answerList);
     console.log(answerList);
     submitCheck();
-    localStorage.setItem("answerList", JSON.stringify(answerList));
+    sessionStorage.setItem("answerList", JSON.stringify(answerList));
   }
 
   renderQuestion();
@@ -201,7 +210,7 @@ export default function initTest() {
     .addEventListener("change", updateSelectedAnswers);
 
   submitBtn.addEventListener("click", () => {
-    localStorage.setItem("scorePage", "submit");
+    sessionStorage.setItem("scorePage", "submit");
     location.replace("../View/score.html");
   });
 }

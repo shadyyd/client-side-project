@@ -20,10 +20,10 @@ document
       if (!field.value.trim()) {
         formValid = false;
         field.classList.add("is-invalid");
-        field.nextElementSibling.textContent = "This field is required";
+        field.parentElement.nextElementSibling.textContent = "This field is required";
       } else {
         field.classList.remove("is-invalid");
-        field.nextElementSibling.textContent = "";
+        field.parentElement.nextElementSibling.textContent = "";
       }
     });
 
@@ -31,12 +31,12 @@ document
       if (passwordField.value.length < 8) {
         formValid = false;
         passwordField.classList.add("is-invalid");
-        passwordField.nextElementSibling.textContent =
+        passwordField.parentElement.nextElementSibling.textContent =
           "Password must be at least 8 characters long.";
       } else if (passwordField.value !== confirmPasswordField.value) {
         formValid = false;
         confirmPasswordField.classList.add("is-invalid");
-        confirmPasswordField.nextElementSibling.textContent =
+        confirmPasswordField.parentElement.nextElementSibling.textContent =
           "Passwords do not match.";
       }
     }
@@ -45,14 +45,14 @@ document
       if (!validateEmail(emailField.value)) {
         formValid = false;
         emailField.classList.add("is-invalid");
-        emailField.nextElementSibling.textContent =
+        emailField.parentElement.nextElementSibling.textContent =
           "Please enter a valid email address.";
       } else {
         users.forEach((user) => {
           if (emailField.value === user.email) {
             formValid = false;
             emailField.classList.add("is-invalid");
-            emailField.nextElementSibling.textContent =
+            emailField.parentElement.nextElementSibling.textContent =
               "This email already exists. Please log in.";
           }
         });
@@ -64,7 +64,7 @@ document
         console.log("hi");
         formValid = false;
         nameField.classList.add("is-invalid");
-        nameField.nextElementSibling.textContent =
+        nameField.parentElement.nextElementSibling.textContent =
           "Name should only contain alphabetic characters.";
       }
     });
@@ -102,6 +102,6 @@ function validateName(name) {
 document.querySelectorAll("#registerForm input").forEach(function (field) {
   field.addEventListener("input", function () {
     field.classList.remove("is-invalid");
-    field.nextElementSibling.textContent = "";
+    field.parentElement.nextElementSibling.textContent = "";
   });
 });

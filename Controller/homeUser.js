@@ -16,10 +16,13 @@ function loadTests() {
     innerDiv.className = "card mb-4";
     const img = document.createElement("img");
     img.className = "card-img-top";
+    img.style.boxShadow = "5px 0px 8px #eeeeee";
 
     img.src = test.img;
 
     const card = document.createElement("div");
+    //style="  box-shadow: 5px 5px 5px #eeee,-5px -5px -5px #eeee;
+    card.style.boxShadow = "5px 5px 5px #eeeeee";
     card.className = "card-body";
     card.innerHTML = `
       <h5 class="card-title">${test.name}</h5>
@@ -36,11 +39,11 @@ function loadTests() {
     div.appendChild(a);
     a.addEventListener("click", function (e) {
       e.preventDefault();
-      localStorage.setItem("QuestionList", JSON.stringify(test.questions));
-      localStorage.setItem("TestId", test.id);
-      localStorage.setItem("Timer", test.timer);
+      sessionStorage.setItem("QuestionList", JSON.stringify(test.questions));
+      sessionStorage.setItem("TestId", test.id);
+      sessionStorage.setItem("Timer", test.timer);
       const startTime = new Date().getTime();
-      localStorage.setItem("startTime", startTime);
+      sessionStorage.setItem("startTime", startTime);
       window.location.href = "test.html";
     });
     card.appendChild(div);
@@ -59,7 +62,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   const user = getLogInUser();
   const h1 = document.querySelector("#welcome-heading");
   if (user && h1) {
-    h1.textContent = `Welcome, ${user.firstName}!`;
+    h1.innerHTML = `Welcome, <span class="text-dark">${user.firstName.charAt(0).toUpperCase() + user.firstName.slice(1).toLowerCase()}!</span>`;
   }
   loadTests();
   document.getElementById("logoutButton").addEventListener("click", logoutUser);

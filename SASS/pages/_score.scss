@@ -1,5 +1,31 @@
 body {
-  background-color: #eeeeee;
+  background-color: #f1f0f0;
+}
+.correct-answer {
+  background-color: #d4edda;
+}
+.wrong-answer {
+  background-color: #f8d7da;
+}
+.correct-question {
+  border: 2px solid rgb(1, 77, 1);
+  padding: 10px;
+}
+.wrong-question {
+  border: 2px solid rgb(207, 2, 2);
+  padding: 10px;
+}
+.question-score {
+  font-weight: bold;
+}
+.correct-icon {
+  color: green;
+  margin-left: 10px;
+}
+
+.wrong-icon {
+  color: red;
+  margin-left: 10px;
 }
 .container-r {
   display: flex;

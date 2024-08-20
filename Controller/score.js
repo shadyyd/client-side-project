@@ -8,7 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!isLoggedIn("student")) {
     window.location.href = "login.html";
   }
-  let question = JSON.parse(localStorage.getItem("QuestionList"));
+  let question = JSON.parse(sessionStorage.getItem("QuestionList"));
   let user = getLogInUser();
   const correctAnswers = ((q) => {
     return q.map((question) => {
@@ -17,7 +17,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .filter((index) => index !== null);
     });
   })(question);
-  let userAnswerList = JSON.parse(localStorage.getItem("answerList")) || [];
+  let userAnswerList = JSON.parse(sessionStorage.getItem("answerList")) || [];
 
   function getScore(correctAnswers, userAnswerList) {
     let score = 0;
@@ -48,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
     return true;
   }
 
-  const header = localStorage.getItem("scorePage");
+  const header = sessionStorage.getItem("scorePage");
   if (header === "RunTimeOut") {
     document.getElementsByClassName("result-header")[0].innerText =
       "Run Time Out";
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
     document.getElementsByClassName("result-header")[0].innerText =
       "Quiz Results";
   }
-  let testId = localStorage.getItem("TestId");
+  let testId = sessionStorage.getItem("TestId");
   console.log(testId);
   const score = getScore(correctAnswers, userAnswerList);
   console.log(user.lastRating);
@@ -68,23 +68,23 @@ document.addEventListener("DOMContentLoaded", function () {
         return true;
       }
     })?.LastScore || 0;
-    lastScore=(lastScore/question.length)*100
+  lastScore = (lastScore / question.length) * 100
   const percentage = (score / question.length) * 100;
   let passingScore = question.length / 2;
-    
-      document.getElementById("last-points").style.backgroundColor=" #dfdcdc"
-  
-    if(percentage<50){
-      document.getElementById("your-score").style.backgroundColor="red"
-    }
-  document.getElementById("last-points").innerText = lastScore.toFixed(2) +"%";
+
+  document.getElementById("last-points").style.backgroundColor = " #dfdcdc"
+
+  if (percentage < 50) {
+    document.getElementById("your-score").style.backgroundColor = "red"
+  }
+  document.getElementById("last-points").innerText = lastScore.toFixed(2) + "%";
   document.getElementById("your-score").innerText = percentage.toFixed(2) + "%";
 
   if (score >= passingScore) {
     document.getElementById("result-icon").classList.add("text-success");
     document.getElementById("result-icon").innerHTML =
-     '<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" width="100px" height="100px" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 512"><path fill="#3AAF3C" d="M256 0c141.39 0 256 114.61 256 256S397.39 512 256 512 0 397.39 0 256 114.61 0 256 0z"/><path fill="#0DA10D" fill-rule="nonzero" d="M391.27 143.23h19.23c-81.87 90.92-145.34 165.89-202.18 275.52-29.59-63.26-55.96-106.93-114.96-147.42l22.03-4.98c44.09 36.07 67.31 76.16 92.93 130.95 52.31-100.9 110.24-172.44 182.95-254.07z"/><path fill="#fff" fill-rule="nonzero" d="M158.04 235.26c19.67 11.33 32.46 20.75 47.71 37.55 39.53-63.63 82.44-98.89 138.24-148.93l5.45-2.11h61.06c-81.87 90.93-145.34 165.9-202.18 275.53-29.59-63.26-55.96-106.93-114.96-147.43l64.68-14.61z"/></svg>';
-     
+      '<svg xmlns="http://www.w3.org/2000/svg" shape-rendering="geometricPrecision" width="100px" height="100px" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 512 512"><path fill="#3AAF3C" d="M256 0c141.39 0 256 114.61 256 256S397.39 512 256 512 0 397.39 0 256 114.61 0 256 0z"/><path fill="#0DA10D" fill-rule="nonzero" d="M391.27 143.23h19.23c-81.87 90.92-145.34 165.89-202.18 275.52-29.59-63.26-55.96-106.93-114.96-147.42l22.03-4.98c44.09 36.07 67.31 76.16 92.93 130.95 52.31-100.9 110.24-172.44 182.95-254.07z"/><path fill="#fff" fill-rule="nonzero" d="M158.04 235.26c19.67 11.33 32.46 20.75 47.71 37.55 39.53-63.63 82.44-98.89 138.24-148.93l5.45-2.11h61.06c-81.87 90.93-145.34 165.9-202.18 275.53-29.59-63.26-55.96-106.93-114.96-147.43l64.68-14.61z"/></svg>';
+
     document.getElementById(
       "result-message"
     ).innerText = `Congratulations, ${user.firstName} ${user.lastName}! You have successfully passed the quiz.`;
@@ -96,16 +96,98 @@ document.addEventListener("DOMContentLoaded", function () {
       "result-message"
     ).innerText = `Sorry, ${user.firstName} ${user.lastName}. You didn’t pass the quiz. Better luck next time!`;
   }
+  updateLastRating(user, score, testId); //
   document.getElementById("logoutButton").addEventListener("click", logoutUser);
   document.getElementById("toTest").addEventListener("click", function () {
-    updateLastRating(user, score, testId); //
-    localStorage.removeItem("answerList");
-    localStorage.removeItem("Timer");
-    localStorage.removeItem("startTime");
-    localStorage.removeItem("shuffled");
-    localStorage.removeItem("QuestionList");
-    localStorage.removeItem("TestId");
-    localStorage.removeItem("scorePage");
+    sessionStorage.removeItem("answerList");
+    sessionStorage.removeItem("Timer");
+    sessionStorage.removeItem("startTime");
+    sessionStorage.removeItem("shuffled");
+    sessionStorage.removeItem("QuestionList");
+    sessionStorage.removeItem("TestId");
+    sessionStorage.removeItem("scorePage");
     window.location.href = "homeUser.html";
   });
+  const questions = question
+
+  const userAnswers = userAnswerList
+  userAnswers.forEach((item, index) => {
+    if (item === null) {
+      userAnswers[index] = { "questionNum": index, "arrAnswer": null };
+    }
+  });
+  console.log(userAnswers)
+  $(document).ready(function() {
+    const quizContainer = $('#quiz-container');
+    let totalCorrectAnswers = 0;
+
+    questions.forEach((question, index) => {
+      const questionHtml = `
+        <div class="question mb-3" id="question${index}" style="    border-radius: 8px;">
+          <h5>${index + 1}. ${question.text}  </h5>
+          <h5 class="question-score text-end" id="score${index}">0/1</h5>
+          ${question.options.map((option, optionIndex) => `
+            <div class="form-check mb-2" style="    border-radius: 8px;">
+              <input class="form-check-input" type="checkbox" name="question${index}" id="question${index}-option${optionIndex}" value="${optionIndex}" disabled>
+              <label class="form-check-label" for="question${index}-option${optionIndex}">
+                ${option.text}
+              </label>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      
+      quizContainer.append(questionHtml);
+    });
+
+    userAnswers.forEach(answer => {
+      const questionNum = answer.questionNum;
+      const selectedOptions = answer.arrAnswer || [];
+      const correctOptions = questions[questionNum].options
+        .map((option, index) => option.isCorrect ? index.toString() : null)
+        .filter(index => index !== null);
+        
+
+      // ضبط الخيارات المحددة
+      selectedOptions.forEach(optionIndex => {
+        const $option = $(`#question${questionNum}-option${optionIndex}`);
+      $option.prop('checked', true);
+      const $parent = $option.parent();
+        $(`#question${questionNum}-option${optionIndex}`).prop('checked', true);
+        if (questions[questionNum].options[optionIndex].isCorrect) {
+          $(`#question${questionNum}-option${optionIndex}`).parent().addClass('correct-answer');
+          $parent.append('<i class="fa-solid fa-check correct-icon"></i>');
+        } else {
+          $(`#question${questionNum}-option${optionIndex}`).parent().addClass('wrong-answer');
+          $parent.append('<i class="fa-solid fa-xmark wrong-icon"></i>');
+
+        }
+      });
+
+      // تلوين الإجابات الصحيحة المتبقية
+      correctOptions.forEach(optionIndex => {
+        if (!selectedOptions.includes(optionIndex)) {
+          $(`#question${questionNum}-option${optionIndex}`).parent().addClass('correct-answer');
+        }
+      });
+
+      // تحديد إذا كانت الإجابات كلها صحيحة
+      const allCorrect = selectedOptions.length === correctOptions.length &&
+                         selectedOptions.every(option => correctOptions.includes(option));
+      
+      // تلوين حدود السؤال
+      if (allCorrect) {
+        $(`#question${questionNum}`).addClass('correct-question');
+        totalCorrectAnswers++;
+        $(`#score${questionNum}`).text("1/1");
+      } else {
+        $(`#question${questionNum}`).addClass('wrong-question');
+        $(`#score${questionNum}`).text("0/1");
+      }
+    });
+
+    // عرض النتيجة الإجمالية
+    $('#total-score').text(`${totalCorrectAnswers}/${questions.length}`);
+  });
+
 });

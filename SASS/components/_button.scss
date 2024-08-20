@@ -43,8 +43,7 @@
   margin-bottom: 10px;
   &:hover {
     background-color: white;
-    color: red;
-    outline: 2px solid red;
+    color: white;
     transition: 0.2s;
   }
 }
@@ -62,7 +61,6 @@
 .btn-custom2 {
   background-color: $dark-green;
   color: white;
-  font-weight: 600;
   &:hover {
     background-color: white;
     color: $dark-green;

@@ -13,7 +13,7 @@ document.addEventListener("DOMContentLoaded", function () {
   if (!isLoggedIn()) {
     window.location.href = "login.html";
   } else {
-    let id = localStorage.getItem("testId") || 0;
+    let id = sessionStorage.getItem("testId") || 0;
     const addQuestionButton = document.getElementById("addQuestionButton");
     const questionsList = document.getElementById("questionsList");
     const createTestForm = document.getElementById("createTestForm");
@@ -270,8 +270,8 @@ function handleDeleteClick(event) {
         id++;
       }
 
-      localStorage.setItem("testId", id);
-      localStorage.setItem("logInUser", JSON.stringify(user));
+      sessionStorage.setItem("testId", id);
+      sessionStorage.setItem("logInUser", JSON.stringify(user));
       localStorage.setItem("tests", JSON.stringify(tests));
     }
 
@@ -324,11 +324,9 @@ function handleDeleteClick(event) {
       document.querySelectorAll(".delete-test").forEach((button) => {
         button.addEventListener("click", function (e) {
           const index = e.target.getAttribute("data-index");
-          console.log(`Deleting test at index ${index}`);  // Added logging for debugging
+          console.log(`Deleting test at index ${index}`);  
     
-          // Check if the test still exists in user.testList
           if (user.testList[index]) {
-            // Find the global index of the test and remove it from the global tests list
             const globalIndex = getTests().findIndex((t) => t.id === user.testList[index].id);
             if (globalIndex > -1) {
               let tests = getTests();
@@ -336,9 +334,8 @@ function handleDeleteClick(event) {
               localStorage.setItem("tests", JSON.stringify(tests));
             }
     
-            // Remove the test from the user's test list
             user.testList.splice(index, 1);
-            localStorage.setItem("logInUser", JSON.stringify(user));
+            sessionStorage.setItem("logInUser", JSON.stringify(user));
             loadTests();
           } else {
             console.error(`Test at index ${index} does not exist in user.testList`);

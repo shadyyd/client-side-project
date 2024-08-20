@@ -54,17 +54,17 @@ export function getUsers() {
 }
 
 export function updateUserAnswerList(newAnswerList) {
-  let user = JSON.parse(localStorage.getItem("logInUser"));
+  let user = JSON.parse(sessionStorage.getItem("logInUser"));
   user.answerList = newAnswerList;
-  localStorage.setItem("logInUser", JSON.stringify(user));
+  sessionStorage.setItem("logInUser", JSON.stringify(user));
 }
 
 export function setLogInUser(user) {
-  localStorage.setItem("logInUser", JSON.stringify(user));
+  sessionStorage.setItem("logInUser", JSON.stringify(user));
 }
 
 export function getLogInUser() {
-  return JSON.parse(localStorage.getItem("logInUser"));
+  return JSON.parse(sessionStorage.getItem("logInUser"));
 }
 export function isLoggedIn(type) {
   const user = getLogInUser();
@@ -73,14 +73,14 @@ export function isLoggedIn(type) {
 }
 
 export function logoutUser() {
-  localStorage.removeItem("logInUser");
-  localStorage.removeItem("answerList");
-  localStorage.removeItem("Timer");
-  localStorage.removeItem("startTime");
-  localStorage.removeItem("shuffled");
-  localStorage.removeItem("QuestionList");
-  localStorage.removeItem("TestId");
-  localStorage.removeItem("scorePage");
+  sessionStorage.removeItem("logInUser");
+  sessionStorage.removeItem("answerList");
+  sessionStorage.removeItem("Timer");
+  sessionStorage.removeItem("startTime");
+  sessionStorage.removeItem("shuffled");
+  sessionStorage.removeItem("QuestionList");
+  sessionStorage.removeItem("TestId");
+  sessionStorage.removeItem("scorePage");
 
   location.replace("../View/login.html");
 }
@@ -100,7 +100,7 @@ export function updateLastRating(user, lastScore, id) {
 
   localStorage.setItem("userList", JSON.stringify(userList));
   const updatedUser = userList.find((u) => u.email === user.email);
-  localStorage.setItem("logInUser", JSON.stringify(updatedUser));
+  sessionStorage.setItem("logInUser", JSON.stringify(updatedUser));
 }
 export function updateInstractorTests(instructor) {
   instructorList = instructorList.map((u) => {

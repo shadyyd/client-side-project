@@ -1,3 +1,16 @@
+.test-body{
+  background-image: url("/bgh2.png");
+    background-size: cover;
+    /* تغطية الصفحة بالكامل بالصورة */
+    background-repeat: no-repeat;
+    /* منع تكرار الصورة */
+    height: 100vh;
+    width: 100%;
+    margin: 0;
+    background-attachment: fixed; 
+    display: flex;
+    flex-direction: column;
+}
 .diabled-btn {
   display: none;
 }

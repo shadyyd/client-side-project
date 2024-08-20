@@ -6,10 +6,10 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
   const password = document.getElementById("password");
   if (!email.value) {
     email.classList.add("is-invalid");
-    email.nextElementSibling.textContent = "This field is required";
+    email.parentNode.nextElementSibling.textContent = "This field is required";
   } else if (!validateEmail(email.value)) {
     email.classList.add("is-invalid");
-    email.nextElementSibling.textContent =
+    email.parentNode.nextElementSibling.textContent =
       "Please enter a valid email address.";
   } else {
     const users = getUsers();
@@ -17,7 +17,8 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
     if (user) {
       if (user.password != password.value) {
         password.classList.add("is-invalid");
-        password.nextElementSibling.textContent = " password is incorrect";
+        password.parentNode.nextElementSibling.textContent = " Password is incorrect";
+        console.log(password.parentNode.nextElementSibling.textContent)
       } else {
         setLogInUser(user);
         if (user.role === "I") {
@@ -28,7 +29,7 @@ document.getElementById("loginForm").addEventListener("submit", (e) => {
       }
     } else {
       email.classList.add("is-invalid");
-      email.nextElementSibling.textContent = "Email  is incorrect";
+      email.parentNode.nextElementSibling.textContent = "Email  is incorrect";
     }
   }
 });
@@ -40,6 +41,6 @@ function validateEmail(email) {
 document.querySelectorAll("input").forEach(function (field) {
   field.addEventListener("input", function () {
     field.classList.remove("is-invalid");
-    field.nextElementSibling.textContent = "";
+    field.parentNode.nextElementSibling.textContent = "";
   });
 });
